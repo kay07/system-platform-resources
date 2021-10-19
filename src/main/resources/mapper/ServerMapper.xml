@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.elco.system.platform.resources.mapper.ServerMapper">
+    <select id="listServer" resultType="com.elco.system.platform.resources.entity.Server">
+        select * from server_msg
+        <where>
+            <if test="serverDto.name!=null and serverDto.name!=''">
+                server_name like concat('%',#{serverDto.name},'%')
+            </if>
+            <if test="serverDto.startTime!=null and serverDto.startTime!='' and serverDto.endTime!=null and serverDto.endTime!=''">
+              and  date_format(create_date,"%Y-%m-%d %H:%i") between #{serverDto.startTime} and #{serverDto.endTime}
+            </if>
+        </where>
+<!--        <if test="serverDto.page>0">-->
+<!--            limit #{serverDto.page},10-->
+<!--        </if>-->
+    </select>
+    <select id="countServer" resultType="java.lang.Integer">
+        select count(id) from  server_msg
+    </select>
+    <select id="list" resultType="com.elco.system.platform.resources.entity.Server">
+        select * from server_msg
+    </select>
+</mapper>

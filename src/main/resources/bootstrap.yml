@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: system-platform-resources
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      server-addr: 192.168.0.170:30222
+      discovery:
+        namespace: 673abc66-7092-4eb1-a315-cfccf8eb1aff
+      config:
+        namespace: 673abc66-7092-4eb1-a315-cfccf8eb1aff
+        file-extension: yaml
+  profiles:
+    active: dev
+logging:
+  config: classpath:logback-spring.xml
